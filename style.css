@@ -16,7 +16,7 @@ body {
 }
 
 table {
-    width: 80%;
+    width: 300px;
     border-collapse: collapse;
 }
 
@@ -36,9 +36,9 @@ p {
 }
 
 input {
-    width: 90%;
+    width: 280px;
     height: 100px;
-    background-color: black;
+    background-color: yellow;
     font-size: 50px;
     color: white;
     border: transparent;
