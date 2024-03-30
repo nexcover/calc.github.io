@@ -1,0 +1,59 @@
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background-color: black;
+}
+
+.container {
+    width: 90%;
+    height: 80vh;
+
+}
+
+.inputOpt {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    width: 95%;
+    height: 100px;
+    background-color: black;
+    font-size: 50px;
+    color: white;
+    border: transparent;
+}
+
+.buttonStyle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+button {
+    width: 23%;
+    height: 10vh;
+    font-size: 40px;
+    margin-right: 7px;
+    margin-top: 15px;
+    border-radius: 50px;
+    border: 1px solid black;
+}
+
+.clear {
+    width: 100%;
+}
+
+.sign {
+    background-color: orange;
+    color: white;
+}
+
+.number {
+    background-color: gray;
+    color: white;
+}
