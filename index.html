@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
     <title>calculator</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="main.js"></script>
@@ -19,63 +21,97 @@
             <table>
                 <tr>
                     <td colspan="1">
-                        <button id="num7" class="number" onclick="num('7')"><p>7</p></button>
+                        <button id="num7" class="number" onclick="num('7')">
+                            <p>7</p>
+                        </button>
                     </td>
                     <td colspan="1">
-                        <button id="num8" class="number" onclick="num('8')"><p>8</p></button>
+                        <button id="num8" class="number" onclick="num('8')">
+                            <p>8</p>
+                        </button>
                     </td>
                     <td colspan="1">
-                        <button id="num9" class="number" onclick="num('9')"><p>9</p></button>
+                        <button id="num9" class="number" onclick="num('9')">
+                            <p>9</p>
+                        </button>
                     </td>
                     <td colspan="1">
-                        <button id="divide" class="sign" onclick="calc('/')"><p>÷</p></button> <br>
+                        <button id="divide" class="sign" onclick="calc('/')">
+                            <p>÷</p>
+                        </button> <br>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button id="num4" class="number" onclick="num('4')"><p>4</p></button>
+                        <button id="num4" class="number" onclick="num('4')">
+                            <p>4</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="num5" class="number" onclick="num('5')"><p>5</p></button>
+                        <button id="num5" class="number" onclick="num('5')">
+                            <p>5</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="num6" class="number" onclick="num('6')"><p>6</p></button>
+                        <button id="num6" class="number" onclick="num('6')">
+                            <p>6</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="multiply" class="sign" onclick="calc('*')"><p>×</p></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="num1" class="number" onclick="num('1')"><p>1</p></button>
-                    </td>
-                    <td>
-                        <button id="num2" class="number" onclick="num('2')"><p>2</p></button>
-                    </td>
-                    <td>
-                        <button id="num3" class="number" onclick="num('3')"><p>3</p></button>
-                    </td>
-                    <td>
-                        <button id="subtract" class="sign" onclick="calc('-')"><p>−</p></button>
+                        <button id="multiply" class="sign" onclick="calc('*')">
+                            <p>×</p>
+                        </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button id="num0" class="number" onclick="num('0')"><p>0</p></button>
+                        <button id="num1" class="number" onclick="num('1')">
+                            <p>1</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="delete" class="deleteOpt" onclick="deleteLast()"><p>D</p></button>
+                        <button id="num2" class="number" onclick="num('2')">
+                            <p>2</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="equal" class="sign" onclick="calculate()"><p>=</p></button>
+                        <button id="num3" class="number" onclick="num('3')">
+                            <p>3</p>
+                        </button>
                     </td>
                     <td>
-                        <button id="add" class="sign" onclick="calc('+')"><p>+</p></button>
+                        <button id="subtract" class="sign" onclick="calc('-')">
+                            <p>−</p>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="num0" class="number" onclick="num('0')">
+                            <p>0</p>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="delete" class="deleteOpt" onclick="deleteLast()">
+                            <p>D</p>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="equal" class="sign" onclick="calculate()">
+                            <p>=</p>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="add" class="sign" onclick="calc('+')">
+                            <p>+</p>
+                        </button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <button id="clear" class="clear" onclick="clearResult()"><p>C L E A R</p></button>
+                        <button id="clear" class="clear" onclick="clearResult()">
+                            <p>C L E A R</p>
+                        </button>
                     </td>
                 </tr>
             </table>
