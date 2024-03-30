@@ -15,13 +15,13 @@ body {
 }
 
 table {
-    width: 95%;
+    width: 100%;
     border-collapse: collapse;
 }
 
 table, td {
     /* border: 1px solid green; */
-    padding: 9px;
+    /* padding: 9px; */
 }
 
 p {
