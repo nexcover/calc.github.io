@@ -24,7 +24,10 @@ function deleteLast() {
 }
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // 정수 부분과 소수점 부분을 분리
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
 }
 
 function calculate() {
@@ -32,7 +35,12 @@ function calculate() {
     if (result !== '' && !isNaN(result[result.length - 1])) {
         try {
             let calculatedResult = eval(result);
-            document.getElementById('result').value = numberWithCommas(calculatedResult);
+            // 나누기 계산의 경우 소수점 이하에서는 1000단위 구분 적용하지 않도록
+            if (result.includes('/')) {
+                document.getElementById('result').value = calculatedResult;
+            } else {
+                document.getElementById('result').value = numberWithCommas(calculatedResult);
+            }
         } catch (error) {
             document.getElementById('result').value = 'Error';
         }
