@@ -29,17 +29,17 @@ p {
 }
 
 textarea {
-    width: 99%;
+    width: 95%;
+    height: 200px;
     resize: none;
     text-align: end;
+    background-color: pink;
 }
 
 #expression {
-    width: 99%;
-    height: 200px;
     font-size: 45px;
     color: white;
-    background-color: transparent;
+    /* background-color: brown; */
     border: 1px solid transparent;
     overflow: scroll;
     /* 좌우 조절 불가능 */
