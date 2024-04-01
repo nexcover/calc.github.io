@@ -21,8 +21,6 @@ p {
     display: flex;
     justify-content: center;
     align-items:end;
-    padding-left: 20px;
-    padding-right: 20px;
     border: 1px solid transparent;
 }
 
@@ -74,7 +72,7 @@ table {
 
 table td {
     width: 20%;
-    padding: 5px;
+    padding: 7px;
     vertical-align: inherit;
 }
 
