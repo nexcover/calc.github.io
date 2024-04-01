@@ -4,6 +4,12 @@ body {
     margin: 0;
 }
 
+p {
+    margin: 0;
+    color: black;
+    text-align: center;
+}
+
 .container {
     width: 100%;
     height: 100vh;
@@ -72,10 +78,29 @@ td {
 #subtract, 
 #add, 
 #equal {
-    color: white;
     background-color: orange;
 }
 
+#divide p, 
+#multiply p, 
+#subtract p, 
+#add p, 
+#equal p {
+    color: white;
+}
+
+#num1 p,
+#num2 p,
+#num3 p,
+#num4 p,
+#num5 p,
+#num6 p,
+#num7 p,
+#num8 p,
+#num9 p,
+#num0 p {
+    color: white;
+}
 #num1,
 #num2,
 #num3,
@@ -86,6 +111,5 @@ td {
 #num8,
 #num9,
 #num0 {
-    background-color: gray;
-    color: white;
+    background-color: darkgray;
 }
