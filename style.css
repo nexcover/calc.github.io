@@ -65,11 +65,8 @@ table {
     background-color: transparent;
 }
 
-td {
-    /* text-align: center; */
-    /* width: 25%; */
-    padding: 10px;
-    border: 1px solid transparent;
+table td {
+    width: 25%;
 }
 
 #divide, 
