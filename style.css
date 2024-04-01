@@ -1,6 +1,7 @@
 body {
     width: 100%;
     height: 100vh;
+    background-color: black;
     margin: 0;
 }
 
@@ -26,13 +27,13 @@ p {
 }
 
 textarea {
-    width: 98%;
+    width: 90%;
     height: 15vh;
     text-align: end;
     resize: none;
     color: white;
     font-size: 45px;
-    background-color: black;
+    background-color: transparent;
     border: 1px solid transparent;
     overflow: auto;
     /* 좌우 조절 불가능 */
@@ -48,8 +49,8 @@ textarea {
 }
 
 button {
-    width: 5rem;
-    height: 5rem;
+    width: 85px;
+    height: 85px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 50px;
@@ -63,7 +64,7 @@ table {
     height: 95vh;
     border: 1px solid transparent;
     border-collapse: collapse;
-    background-color: black;
+    background-color: transparent;
 }
 
 td {
