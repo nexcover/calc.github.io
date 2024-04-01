@@ -33,7 +33,7 @@ textarea {
 }
 
 #expression {
-    width: 80%;
+    width: 90%;
     height: 200px;
     font-size: 45px;
     color: white;
@@ -45,7 +45,7 @@ textarea {
 }
 
 #result {
-    width: 80%;
+    width: 90%;
     text-align: right;
     color: white;
     font-size: 40px;
