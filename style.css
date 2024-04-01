@@ -3,6 +3,7 @@ body {
     height: 100vh;
     background-color: black;
     margin: 0;
+    overflow-x: hidden;
 }
 
 p {
