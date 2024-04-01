@@ -29,14 +29,14 @@ p {
 }
 
 textarea {
-    width: 95%;
-    height: 200px;
     resize: none;
     text-align: end;
     background-color: pink;
 }
 
 #expression {
+    width: 95%;
+    height: 200px;
     font-size: 45px;
     color: white;
     /* background-color: brown; */
