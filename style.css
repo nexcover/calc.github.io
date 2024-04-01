@@ -1,79 +1,91 @@
 body {
     width: 100%;
     height: 100vh;
-    margin: 0%;
-    overflow-x: hidden;
-    background-color: black;
+    margin: 0;
 }
 
 .container {
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: end;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.calculator {
+    width: 95%;
+    height: 95vh;
+    border: 1px solid transparent;
+}
+
+textarea {
+    width: 98%;
+    height: 15vh;
+    text-align: end;
+    resize: none;
+    color: white;
+    font-size: 45px;
+    background-color: black;
+    border: 1px solid transparent;
+    overflow: auto;
+    /* 좌우 조절 불가능 */
+}
+
+#result {
+    width: 99%;
+    height: 7vh;
+    text-align: right;
+    color: white;
+    font-size: 40px;
+    border: 1px solid transparent;
+}
+
+button {
+    width: 5rem;
+    height: 5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 50px;
+    border: 2px solid black;
+    font-size: 35px;
+    text-align: center;;
+
 }
 
 table {
     width: 100%;
+    height: 95vh;
+    border: 1px solid transparent;
     border-collapse: collapse;
-}
-
-table, td {
-    /* border: 1px solid green; */
-    /* padding: 9px; */
-}
-
-p {
-    margin: 0;
-    text-align: center;
-}
-
-.inputOpt {
-    display: flex;
-    justify-content: center;
-}
-
-input {
-    width: 100%;
-    height: 200px;
     background-color: black;
-    font-size: 50px;
+}
+
+td {
+    text-align: center;
+    width: 25%;
+    border: 1px solid transparent;
+}
+
+#divide, 
+#multiply, 
+#subtract, 
+#add, 
+#equal {
     color: white;
-    border: transparent;
-}
-
-.deleteOpt {
-    font-size: 30px;
-    text-align: center;
-    color: black;
-}
-
-.buttonStyle {
-    width: 100%;
-    background-color: black;
-}
-
-button {
-    width: 100%;
-    height: 80px;
-    font-size: 35px;
-    border-radius: 50px;
-    border: 1px solid black;
-}
-
-.clear {
-    width: 100%;
-    color: black;
-}
-
-.sign {
     background-color: orange;
-    color: white;
 }
 
-.number {
+#num1,
+#num2,
+#num3,
+#num4,
+#num5,
+#num6,
+#num7,
+#num8,
+#num9,
+#num0 {
     background-color: gray;
     color: white;
 }

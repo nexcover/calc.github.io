@@ -1,48 +1,36 @@
-function num(num) {
-    let result = document.getElementById('result').value;
-    if (result !== '0') {  // 0이 제일 앞에 나오지 않도록
-        document.getElementById('result').value += num;
-    } else {
-        document.getElementById('result').value = num;
-    }
-}
+let expression = "";
+        let resultDiv = document.getElementById("result");
 
-function calc(operator) {
-    let result = document.getElementById('result').value;
-    if (result !== '' && !isNaN(result[result.length - 1])) {
-        document.getElementById('result').value += operator;
-    }
-}
-
-function clearResult() {
-    document.getElementById('result').value = '';
-}
-
-function deleteLast() {
-    let result = document.getElementById('result').value;
-    document.getElementById('result').value = result.slice(0, -1);
-}
-
-function numberWithCommas(x) {
-    // 정수 부분과 소수점 부분을 분리
-    let parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
-}
-
-function calculate() {
-    let result = document.getElementById('result').value;
-    if (result !== '' && !isNaN(result[result.length - 1])) {
-        try {
-            let calculatedResult = eval(result);
-            // 나누기 계산의 경우 소수점 이하에서는 1000단위 구분 적용하지 않도록
-            if (result.includes('/')) {
-                document.getElementById('result').value = calculatedResult;
-            } else {
-                document.getElementById('result').value = numberWithCommas(calculatedResult);
-            }
-        } catch (error) {
-            document.getElementById('result').value = 'Error';
+        function num(num) {
+            expression += num;
+            document.getElementById("expression").value = expression;
         }
-    }
-}
+
+        function calc(operator) {
+            expression += operator;
+            document.getElementById("expression").value = expression;
+        }
+
+        function clearResult() {
+            expression = "";
+            document.getElementById("expression").value = expression;
+            resultDiv.innerText = "";
+        }
+
+        function deleteLast() {
+            expression = expression.slice(0, -1);
+            document.getElementById("expression").value = expression;
+        }
+
+        function calculate() {
+            try {
+                let result = eval(expression);
+                if (typeof result !== "number" || isNaN(result) || !isFinite(result)) {
+                    resultDiv.innerText = "Invalid expression";
+                } else {
+                    resultDiv.innerText = result.toLocaleString(); // 천 단위 구분 콤마 추가
+                }
+            } catch (error) {
+                resultDiv.innerText = "Error";
+            }
+        }
