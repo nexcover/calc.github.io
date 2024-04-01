@@ -37,8 +37,6 @@ textarea {
     height: 200px;
     font-size: 45px;
     color: white;
-    /* background-color: brown; */
-    background-color: transparent;
     border: 1px solid transparent;
     overflow: scroll;
     /* 좌우 조절 불가능 */
@@ -49,7 +47,6 @@ textarea {
     text-align: right;
     color: white;
     font-size: 40px;
-    background-color: transparent;
     border: 1px solid transparent;
 }
 
@@ -66,7 +63,6 @@ table {
     height: 50vh;
     border: 1px solid transparent;
     border-collapse: collapse;
-    background-color: transparent;
 }
 
 table td {
