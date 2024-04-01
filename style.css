@@ -30,15 +30,15 @@ p {
 textarea {
     resize: none;
     text-align: end;
-    background-color: pink;
 }
 
 #expression {
-    width: 95%;
+    width: 90%;
     height: 200px;
     font-size: 45px;
     color: white;
     /* background-color: brown; */
+    background-color: pink;
     border: 1px solid transparent;
     overflow: scroll;
     /* 좌우 조절 불가능 */
