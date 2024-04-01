@@ -1,36 +1,45 @@
 let expression = "";
-        let resultDiv = document.getElementById("result");
+let resultDiv = document.getElementById("result");
+let expressionTextarea = document.getElementById("expression");
 
-        function num(num) {
-            expression += num;
-            document.getElementById("expression").value = expression;
-        }
+function num(num) {
+    expression += num;
+    expressionTextarea.value = expression;
+    scrollToBottom();
+}
 
-        function calc(operator) {
-            expression += operator;
-            document.getElementById("expression").value = expression;
-        }
+function calc(operator) {
+    expression += operator;
+    expressionTextarea.value = expression;
+    scrollToBottom();
+}
 
-        function clearResult() {
-            expression = "";
-            document.getElementById("expression").value = expression;
-            resultDiv.innerText = "";
-        }
+function clearResult() {
+    expression = "";
+    expressionTextarea.value = expression;
+    scrollToBottom();
+    resultDiv.innerText = "";
+}
 
-        function deleteLast() {
-            expression = expression.slice(0, -1);
-            document.getElementById("expression").value = expression;
-        }
+function deleteLast() {
+    expression = expression.slice(0, -1);
+    expressionTextarea.value = expression;
+    scrollToBottom();
+}
 
-        function calculate() {
-            try {
-                let result = eval(expression);
-                if (typeof result !== "number" || isNaN(result) || !isFinite(result)) {
-                    resultDiv.innerText = "Invalid expression";
-                } else {
-                    resultDiv.innerText = result.toLocaleString(); // 천 단위 구분 콤마 추가
-                }
-            } catch (error) {
-                resultDiv.innerText = "Error";
-            }
+function calculate() {
+    try {
+        let result = eval(expression);
+        if (typeof result !== "number" || isNaN(result) || !isFinite(result) || result >= 1e9) {
+            resultDiv.innerText = "Invalid expression or too large number";
+        } else {
+            resultDiv.innerText = result.toLocaleString();
         }
+    } catch (error) {
+        resultDiv.innerText = "Error";
+    }
+}
+
+function scrollToBottom() {
+    expressionTextarea.scrollTop = expressionTextarea.scrollHeight;
+}
