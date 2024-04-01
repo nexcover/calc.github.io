@@ -36,7 +36,7 @@ textarea {
     width: 90%;
     height: 200px;
     font-size: 45px;
-    color: white;
+    background-color: black;
     border: 1px solid transparent;
     overflow: scroll;
     /* 좌우 조절 불가능 */
@@ -45,8 +45,8 @@ textarea {
 #result {
     width: 90%;
     text-align: right;
-    color: white;
     font-size: 40px;
+    background-color: black;
     border: 1px solid transparent;
 }
 
@@ -63,6 +63,7 @@ table {
     height: 50vh;
     border: 1px solid transparent;
     border-collapse: collapse;
+    background-color: transparent;
 }
 
 table td {
