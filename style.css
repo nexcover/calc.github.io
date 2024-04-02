@@ -44,11 +44,11 @@ textarea {
 
 table {
     margin:auto;
-    width: 80%;
+    width: 75%;
     height: 100%;
     border: 1px solid black;
     border-collapse: collapse;
-    background-color: pink;
+    background-color: black;
 }
 
 td {
