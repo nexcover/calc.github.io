@@ -1,94 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ㅏㅐ">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
     <title>간단한 계산기</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="main.js"></script>
 </head>
 
 <body>
+    <div class="container">
+        <div class="calcBox">
+            <textarea id="inputArea" disabled></textarea>
+            <textarea id="outputArea" disabled></textarea> <br>
+        </div>
 
-    <div class="calcBox">
-        <textarea id="inputArea" disabled></textarea>
-        <textarea id="outputArea" disabled></textarea> <br>
-    </div>
-
-    <div class="buttonBox">
-        <table>
-            <tr>
-                <td>
-                    <button class="etcButton" onclick="allClear()">AC</button>
-                </td>
-                <td>
-                    <button class="etcButton" onclick="calculate('(')">(</button>
-                </td>
-                <td>
-                    <button class="etcButton" onclick="calculate(')')">)</button>
-                </td>
-                <td>
-                    <button class="etcButton" onclick="calculate()">％</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button onclick="num1('7')">7</button>
-                </td>
-                <td>
-                    <button onclick="num1('8')">8</button>
-                </td>
-                <td>
-                    <button onclick="num1('9')">9</button>
-                </td>
-                <td>
-                    <button class="sign" onclick="calculate('/')">÷</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button onclick="num1('4')">4</button>
-                </td>
-                <td>
-                    <button onclick="num1('5')">5</button>
-                </td>
-                <td>
-                    <button onclick="num1('6')">6</button>
-                </td>
-                <td>
-                    <button class="sign" onclick="calculate('*')">×</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button onclick="num1('1')">1</button>
-                </td>
-                <td>
-                    <button onclick="num1('2')">2</button>
-                </td>
-                <td>
-                    <button onclick="num1('3')">3</button>
-                </td>
-                <td>
-                    <button class="sign" onclick="calculate('-')">−</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button onclick="num1('0')">0</button>
-                </td>
-                <td>
-                    <button onclick="dot('.')">.</button>
-                </td>
-                <td>
-                    <button onclick="del()">⌫</button>
-                </td>
-                <td>
-                    <button class="sign" onclick="calculate('+')">+</button>
-                </td>
-            </tr>
-        </table>
-
+        <div class="buttonBox">
+            <table>
+                <tr>
+                    <td>
+                        <button class="etcButton" onclick="allClear()">AC</button>
+                    </td>
+                    <td>
+                        <button class="etcButton" onclick="calculate('(')">(</button>
+                    </td>
+                    <td>
+                        <button class="etcButton" onclick="calculate(')')">)</button>
+                    </td>
+                    <td>
+                        <button class="etcButton" onclick="calculate('%')">％</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="num1('7')">7</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('8')">8</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('9')">9</button>
+                    </td>
+                    <td>
+                        <button class="sign" onclick="calculate('/')">÷</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="num1('4')">4</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('5')">5</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('6')">6</button>
+                    </td>
+                    <td>
+                        <button class="sign" onclick="calculate('*')">×</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="num1('1')">1</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('2')">2</button>
+                    </td>
+                    <td>
+                        <button onclick="num1('3')">3</button>
+                    </td>
+                    <td>
+                        <button class="sign" onclick="calculate('-')">−</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="num1('0')">0</button>
+                    </td>
+                    <td>
+                        <button onclick="dot('.')">.</button>
+                    </td>
+                    <td>
+                        <button onclick="del()">⌫</button>
+                    </td>
+                    <td>
+                        <button class="sign" onclick="calculate('+')">+</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 
