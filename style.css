@@ -8,7 +8,8 @@ body {
 
 p {
     margin: 0;
-    /* text-align: center; */
+    text-align: center;
+    margin-left: -10px;
 }
 
 .container {
@@ -69,7 +70,7 @@ button {
 
 .calcBox {
     width: 100%;
-    height: 40vh;
+    height: 30vh;
     display: flex;
     justify-content: end;
     align-items: center;
