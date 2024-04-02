@@ -8,7 +8,9 @@ body {
 
 p {
     margin: 0;
+    font-size: 50px;
     text-align: center;
+    font-weight: bold;
 }
 
 .container {
@@ -49,7 +51,6 @@ textarea {
 button {
     width: 80px;
     height: 80px;
-    font-size: 35px;
     border-radius: 50px;
     margin: 5px;
     color: white;
