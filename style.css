@@ -4,7 +4,6 @@ body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
-
 }
 
 p {
@@ -47,35 +46,25 @@ textarea {
     border: 1px solid transparent;
 }
 
-table {
-    margin:auto;
-    width: 75%;
-    height: 100%;
-    border: 1px solid black;
-    border-collapse: collapse;
-    background-color: black;
-}
-
-td {
-    width: 14%;
-    text-align: center;
-    border: 1px solid black;
-}
-
 button {
-    width: 90%;
-    height: 90%;
-    font-size: 35px;
-    border-radius: 25px;
+    width: 20%;
+    height: 16%;
+    font-size: 30px;
+    border-radius: 50px;
+    margin: 5px;
     color: white;
     background-color: rgb(97, 97, 97);
     border: 1px solid black;
 }
 
 .buttonBox {
-    width: 100%;
+    width: 90%;
     height: 50vh;
-    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid pink;
 }
 
 .calcBox {
@@ -87,7 +76,6 @@ button {
     flex-direction: column;
     border: 1px solid black;
 }
-
 
 .sign {
     background-color: orange;
