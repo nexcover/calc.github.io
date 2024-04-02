@@ -2,10 +2,9 @@ body {
     width: 100%;
     height: 100vh;
     margin: 0;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
 }
 
 .container {
@@ -46,7 +45,7 @@ table {
 }
 
 td {
-    width: 25%;
+    width: 20%;
     border: 1px solid black;
 }
 
@@ -60,24 +59,23 @@ button {
     border: 1px solid black;
 }
 
-
-.buttonBox {
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    border: 1px solid black;
-}
-
 .calcBox {
     width: 100%;
-    height: 40vh;
+    height: 50vh;
     display: flex;
     justify-content: end;
     align-items: center;
     flex-direction: column;
+    border: 1px solid black;
+}
+
+.buttonBox {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-wrap: wrap;
     border: 1px solid black;
 }
 
