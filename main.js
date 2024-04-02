@@ -49,7 +49,7 @@ function calculate(operator) {
 function equal() {
     try {
         let result = eval(input);
-        output.textContent = numberWithCommas(result);
+        output.textContent = formatResult(result);
         input = result.toString();
     } catch (error) {
         output.textContent = "Error";
@@ -71,7 +71,7 @@ function del() {
 function updateOutput() {
     try {
         let result = eval(input);
-        output.textContent = numberWithCommas(result);
+        output.textContent = formatResult(result);
     } catch (error) {
         output.textContent = "잘못된 연산입니다.";
     }
@@ -81,11 +81,12 @@ function updateOutput() {
     }
 }
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function formatResult(x) {
+    // Format the result to display up to 4 decimal places without commas
+    return parseFloat(x.toFixed(4)).toString();
 }
 
 document.getElementById("inputArea").addEventListener("input", function () {
     input = document.getElementById("inputArea").value;
     updateOutput();
-});
+})

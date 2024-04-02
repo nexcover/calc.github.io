@@ -10,7 +10,7 @@ p {
     margin: 0;
     font-size: 50px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .container {
@@ -49,8 +49,8 @@ textarea {
 }
 
 button {
-    width: 80px;
-    height: 80px;
+    width: 9vh;
+    height: 9vh;
     border-radius: 50px;
     margin: 5px;
     color: white;
