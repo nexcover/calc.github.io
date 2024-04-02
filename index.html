@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ㅏㅐ">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -82,7 +82,7 @@
                         <button onclick="dot('.')">.</button>
                     </td>
                     <td>
-                        <button onclick="del()"></button>
+                        <button onclick="del()" style="font-size: 20px;">del</button>
                     </td>
                     <td>
                         <button class="sign" onclick="calculate('+')">+</button>
@@ -91,6 +91,89 @@
             </table>
         </div>
     </div>
+
+    <script>
+        let input = "";
+        let output = document.getElementById("outputArea");
+
+        function num1(num) {
+            if (input.length < 100000000) {
+                input += num;
+                document.getElementById("inputArea").value = input;
+                updateOutput();
+            }
+        }
+
+        function dot() {
+            if (!input.includes('.') && input.length < 100000000) {
+                input += '.';
+                document.getElementById("inputArea").value = input;
+                updateOutput();
+            }
+        }
+
+        function calculate(operator) {
+            if (operator === '%') {
+                if (!isNaN(input)) {
+                    input = parseFloat(input) * 100;
+                    document.getElementById("inputArea").value = input;
+                    updateOutput();
+                } else {
+                    input += operator;
+                    document.getElementById("inputArea").value = input;
+                    updateOutput();
+                }
+            } else {
+                input += operator;
+                document.getElementById("inputArea").value = input;
+                updateOutput();
+            }
+        }
+
+        function equal() {
+            try {
+                let result = eval(input);
+                output.textContent = numberWithCommas(result);
+                input = result.toString();
+            } catch (error) {
+                output.textContent = "Error";
+            }
+        }
+
+        function allClear() {
+            input = "";
+            document.getElementById("inputArea").value = "";
+            updateOutput();
+        }
+
+        function del() {
+            input = input.slice(0, -1);
+            document.getElementById("inputArea").value = input;
+            updateOutput();
+        }
+
+        function updateOutput() {
+            try {
+                let result = eval(input);
+                output.textContent = numberWithCommas(result);
+            } catch (error) {
+                output.textContent = "Error";
+            }
+
+            if (input === "") {
+                output.textContent = "0";
+            }
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        document.getElementById("inputArea").addEventListener("input", function () {
+            input = document.getElementById("inputArea").value;
+            updateOutput();
+        });
+    </script>
 </body>
 
 </html>
