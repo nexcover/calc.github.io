@@ -60,21 +60,19 @@ table {
 td {
     width: 20%;
     height: 80px;
-    padding: 5px;
-    /* border: 1px solid yellow; */
 }
 
 button {
     width: 100%;
     height: 100%;
-    border-radius: 50px;
+    /* border-radius: 10px; */
     color: white;
     background-color: rgb(97, 97, 97);
     border: 1px solid black;
 }
 
 .buttonBox {
-    width: 87%;
+    width: 90%;
     height: 60vh;
     border: 1px solid black;
 }
