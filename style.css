@@ -4,13 +4,14 @@ body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    font-family: sans-serif;
 }
 
 p {
     margin: 0;
-    font-size: 50px;
+    font-size: 45px;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .container {
@@ -48,23 +49,33 @@ textarea {
     border: 1px solid transparent;
 }
 
+table {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    /* border: 1px solid pink; */
+}
+
+td {
+    width: 20%;
+    height: 80px;
+    padding: 5px;
+    /* border: 1px solid yellow; */
+}
+
 button {
-    width: 20vw;
-    height: 20vw;
+    width: 100%;
+    height: 100%;
     border-radius: 50px;
-    margin: 5px;
     color: white;
     background-color: rgb(97, 97, 97);
     border: 1px solid black;
 }
 
 .buttonBox {
-    width: 100%;
-    height: 55vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    width: 87%;
+    height: 60vh;
     border: 1px solid black;
 }
 
