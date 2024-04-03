@@ -45,6 +45,7 @@ textarea {
     padding: 5px;
     font-size: 40px;
     color: white;
+    overflow-y: hidden;
     background-color: transparent;
     border: 1px solid transparent;
 }
