@@ -38,7 +38,7 @@ p {
 .buttonBox {
     width: 90%;
     height: 60%;
-    margin-top: 50px;
+    margin: 20px 0 50px 0;
     border: 1px solid black;
 }
 
