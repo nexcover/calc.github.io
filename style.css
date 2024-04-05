@@ -27,7 +27,7 @@ p {
 .calcBox {
     width: 100%;
     height: 40%;
-    display: flex;
+    display: flex;;
     justify-content: end;
     align-items: center;
     flex-direction: column;
@@ -38,6 +38,7 @@ p {
 .buttonBox {
     width: 90%;
     height: 60%;
+    margin-top: 50px;
     border: 1px solid black;
 }
 
@@ -47,20 +48,20 @@ textarea {
 
 #inputArea {
     width: 90%;
-    height: 100px;
+    height: 70px;
     font-size: 45px;
     text-align: right;
     color: white;
-    padding-top: 50%;
+    padding-top: 45%;
     background-color: black;
     border: 1px solid transparent;
 }
 
 #outputArea {
     width: 90%;
-    height: 20%;
+    height: 50px;
     text-align: right;;
-    padding: 5px;
+    /* padding: 5px; */
     font-size: 40px;
     color: white;
     background-color: black;
