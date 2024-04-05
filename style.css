@@ -52,6 +52,7 @@ textarea {
     font-size: 45px;
     text-align: right;
     color: white;
+    scrollbar-width:none;
     padding-top: 45%;
     background-color: black;
     border: 1px solid transparent;
@@ -61,7 +62,6 @@ textarea {
     width: 90%;
     height: 50px;
     text-align: right;
-    /* padding: 5px; */
     font-size: 40px;
     color: white;
     background-color: black;

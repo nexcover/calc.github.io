@@ -1,104 +1,74 @@
-let input = "";
-let output = document.getElementById("outputArea");
-let inputArea = document.getElementById("inputArea");
+let inputArea = document.getElementById('inputArea');
+let outputArea = document.getElementById('outputArea');
 
-function num1(num) {
-    if (input.length === 0 && (num === '0' || num === '00')) {
-        return;
-    }
-    if (input.length < Infinity) {
-        input += num;
-        inputArea.value = input;
-        updateOutput();
-        updateScroll();
+function updateOutput() {
+    let expression = inputArea.value;
+
+    // 암시적인 곱셈을 위한 정규식 패턴
+    let pattern = /(\d+)([\(a-zA-Z])(\d+)/g;
+    expression = expression.replace(pattern, '$1*$2');
+
+    try {
+        let result = eval(expression);
+        outputArea.value = result;
+    } catch (error) {
+        outputArea.value = 'Error';
     }
 }
 
-function dot() {
-    if (input === "") {
-        input = "0.";
-    } else if (!input.includes('.')) {
-        if (input === "0") {
-            input = "0.";
-        } else if (input.length < 100000000) {
-            input += '.';
-        }
+function num1(value) {
+    if (value === '00' && inputArea.value.length === 0) {
+        return; // 입력 올바르기 전에 '00' 입력 방지
     }
-    inputArea.value = input;
+    inputArea.value += value;
+    checkAndAdjustScroll();  // 숫자를 입력할 때 스크롤을 확인 및 조절합니다.
     updateOutput();
-    updateScroll();
 }
 
 function calculate(operator) {
-    if (input === "" && operator !== '-' && operator !== '(') {
-        return;
+    let lastChar = inputArea.value.slice(-1); // 마지막 문자 가져오기
+
+    if (inputArea.value === "" && ['*', '/', ')'].includes(operator)) {
+        return; // 입력 올바르기 전에 '*' 또는 '/' 입력 방지
     }
 
-    const lastChar = input[input.length - 1];
-    if (['+', '-', '*', '/','(' ,')'].includes(lastChar) && operator !== '-') {
-        return;
+    // 마지막 문자가 연산자인 경우
+    if (['+', '-', '*', '/'].includes(lastChar)) {
+        // 마지막 문자를 삭제하고 새로운 연산자로 대체
+        inputArea.value = inputArea.value.slice(0, -1) + operator;
+    } else {
+        inputArea.value += operator;
     }
 
-    if (['+', '-', '*', '/','(' ,')'].includes(operator)) {
-        if (['+', '-', '*', '/','(' ,')'].includes(lastChar)) {
-            input = input.slice(0, -1);  // 마지막 연산자를 제거
-        }
-        input += operator;
-        inputArea.value = input;
-        updateOutput();
-        updateScroll();
-    }
-}
-
-function equal() {
-    try {
-        let result = eval(input);
-        output.textContent = formatResult(result);
-        input = result.toString();
-    } catch (error) {
-        output.textContent = "Error";
-    }
-}
-
-function allClear() {
-    input = "";
-    inputArea.value = "0";
+    checkAndAdjustScroll();  // 연산자를 입력할 때 스크롤을 확인 및 조절합니다.
     updateOutput();
-    updateScroll();
 }
 
 function del() {
-    if (input.length > 0) {
-        input = input.slice(0, -1);
-        inputArea.value = input;
-        updateOutput();
-        updateScroll();
-    }
-}
-
-function updateOutput() {
-    try {
-        let result = eval(input);
-        output.textContent = formatResult(result);
-    } catch (error) {
-        output.textContent = "수식 입력중";
-    }
-
-    if (input === "") {
-        output.textContent = "0";
-    }
-}
-
-function formatResult(x) {
-    return parseFloat(x.toFixed(4)).toLocaleString('en-US');
-}
-
-function updateScroll() {
-    inputArea.scrollTop = inputArea.scrollHeight;
-}
-
-inputArea.addEventListener("input", function () {
-    input = inputArea.value;
+    inputArea.value = inputArea.value.slice(0, -1);
+    checkAndAdjustScroll();  // 삭제할 때 스크롤을 확인 및 조절합니다.
     updateOutput();
-    updateScroll();
-});
+}
+
+function dot() {
+    if (inputArea.value === "") {
+        return; // 입력 올바르기 전에 '.' 입력 방지
+    }
+
+    inputArea.value += '.';
+    updateOutput();
+}
+
+function allClear() {
+    inputArea.value = '';
+    outputArea.value = '0';
+}
+
+function checkAndAdjustScroll() {
+    if (inputArea.scrollHeight > 100) {  // 예를 들어, 100px을 기준으로 스크롤을 조절합니다.
+        inputArea.scrollTop = inputArea.scrollHeight;  // 스크롤 위치를 마지막으로 조절합니다.
+    }
+}
+
+// 수식 입력시 자동으로 결과 업데이트
+inputArea.addEventListener('input', updateOutput);
