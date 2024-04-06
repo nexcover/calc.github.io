@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="inOutput">
-            <textarea id="inputArea" readonly>0</textarea> <br>
+            <textarea id="inputArea" disabled>0</textarea> <br>
             <textarea id="outputArea" disabled>0</textarea>
         </div>
 
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td colspan="2"><button class="zero">0</button></td>
-                    <td><button>.</button></td>
+                    <td><button type="text" onclick="dot('')">.</button></td>
                     <td><button class="sign" id="backspace" data-type="backspace">⌫</button></td>
                 </tr>
             </table>

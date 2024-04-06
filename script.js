@@ -49,24 +49,45 @@ class Calculator {
 
             let result = eval(evaluatedContent);
 
+            // Limit decimal places to 6
+            result = parseFloat(result.toFixed(6));
+
             // Check if the result is greater than 1 billion (10억)
             if (Math.abs(result) >= 1e9) {
                 result = result.toExponential(2); // Convert to exponential notation
+            } else {
+                // Split the number into integer and fractional parts
+                let parts = result.toString().split('.');
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format integer part with commas
+
+                // Remove commas from decimal part
+                if (parts[1]) {
+                    parts[1] = parts[1].replace(/,/g, '');
+                }
+
+                result = parts.join('.');
             }
 
-            let formattedResult = this.formatNumberWithCommas(result);
-            this.outputElement.value = formattedResult;
+            this.outputElement.value = result;
         } catch (error) {
             this.outputElement.value = '';
         }
     }
 
-    formatNumberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    formatNumberForDisplay(number) {
+        const parts = number.toString().split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format integer part with commas
+
+        // Remove commas from decimal part
+        if (parts[1]) {
+            parts[1] = parts[1].replace(/,/g, '');
+        }
+
+        return parts.join('.');
     }
 
     updateDisplay() {
-        let formattedDisplayContent = this.formatNumberWithCommas(this.displayContent);
+        let formattedDisplayContent = this.formatNumberForDisplay(this.displayContent);
         this.displayInputElement.value = formattedDisplayContent;
         this.scrollTextArea();
     }
@@ -84,7 +105,7 @@ class Calculator {
 
     backspace() {
         // Check if the last character is an operator with 3 characters (e.g., " * ", " / ", " + ", " - ")
-        const lastThreeChars = this.displayContent.slice(-1);
+        const lastThreeChars = this.displayContent.slice(-3);
         if (lastThreeChars.trim().length >= 1) {
             this.displayContent = this.displayContent.slice(0, -1);
         } else {
@@ -96,7 +117,7 @@ class Calculator {
     }
 
     getCurrentNumber() {
-        const numbers = this.displayContent.split(/[-+*\/]/);
+        const numbers = this.displayContent.split(/[-+\u00D7\u00F7]/);
         return numbers[numbers.length - 1];
     }
 }
