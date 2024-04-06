@@ -8,6 +8,14 @@ class Calculator {
     }
 
     appendNumber(number) {
+        const currentNumber = this.getCurrentNumber();
+
+        // Check if adding this number would exceed 1 billion (10억)
+        if ((currentNumber.length === 9 && currentNumber[0] !== '-') ||
+            (currentNumber.length === 10 && currentNumber[0] === '-')) {
+            return; // Do not append number if it exceeds 1 billion
+        }
+
         if (this.equalsCheck) {
             this.displayContent = number;
             this.equalsCheck = false;
@@ -40,13 +48,18 @@ class Calculator {
             evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1/');
 
             let result = eval(evaluatedContent);
+
+            // Check if the result is greater than 1 billion (10억)
+            if (Math.abs(result) >= 1e9) {
+                result = result.toExponential(2); // Convert to exponential notation
+            }
+
             let formattedResult = this.formatNumberWithCommas(result);
             this.outputElement.value = formattedResult;
         } catch (error) {
-            this.outputElement.value = 'Error';
+            this.outputElement.value = '';
         }
     }
-
 
     formatNumberWithCommas(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -80,6 +93,11 @@ class Calculator {
 
         this.updateResult();
         this.updateDisplay();
+    }
+
+    getCurrentNumber() {
+        const numbers = this.displayContent.split(/[-+*\/]/);
+        return numbers[numbers.length - 1];
     }
 }
 
