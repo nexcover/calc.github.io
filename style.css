@@ -1,101 +1,73 @@
+* {
+    box-sizing: border-box;
+    color: white;
+}
+
 body {
-    width: 100%;
     height: 100vh;
-    margin: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    font-family: sans-serif;
+    background-color: black;
 }
 
-p {
-    margin: 0;
-    font-size: 45px;
-    text-align: center;
-    font-weight: 500;
-}
-
-.container {
+main {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: black;
 }
 
-.calcBox {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: column;
-    background-color: black;
-    border: 1px solid black;
+.button-wrap {
+    display: grid;
+    /* 한 줄에 4개씩, 모두 동일한 비율 적용(1:1:1:1) */
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.buttonBox {
-    width: 90%;
-    height: 60%;
-    margin: 50px 0 50px 0;
-    border: 1px solid black;
+button {
+    height: 70px;
+    outline: none;
 }
 
 textarea {
+    width: 100%;
+    text-align: right;
+    border: none;
+    background: black;
+    padding-right: 1rem;
+    font-size: 2.4rem;
     resize: none;
 }
 
 #inputArea {
-    width: 90%;
-    height: 70px;
-    font-size: 45px;
-    text-align: right;
-    color: white;
-    scrollbar-width:none;
+    height: 35%;
     padding-top: 45%;
-    background-color: black;
-    border: 1px solid transparent;
+    font-size: 2.1rem;
+    word-spacing: -10px;
 }
 
 #outputArea {
-    width: 90%;
     height: 50px;
-    text-align: right;
-    font-size: 40px;
-    color: white;
-    background-color: black;
-    border: 1px solid transparent;
-    overflow-y: hidden;
-}
-
-table {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    border-collapse: collapse;
-    /* border: 1px solid pink; */
-}
-
-td {
-    width: 80px;
-    height: 15%;
 }
 
 button {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    color: white;
-    background-color: rgb(97, 97, 97);
-    border: 1px solid black;
+    background: #828284;
+    border: 1px solid #454448;
+    font-size: 2rem;
 }
 
-.sign {
+/* nth-child(4n+2): 4번째 요소마다 스타일을 적용하는데 처음에만 두번째에 적용 */
+button:nth-child(4n+2),
+button:last-child {
     background-color: orange;
 }
 
-.etcButton {
-    color: black;
-    background-color: rgb(190, 190, 190);
+button:hover {
+    opacity: .5;
+}
+
+.ac {
+    /* 첫 번째 선부터 4번째 선까지 지정 */
+    grid-column: 1/4;
+    background: #6A6A6C;
+}
+
+.zero {
+    /* 첫 번째 선부터 3번째 선까지 지정 */
+    grid-column: 1/3;
 }

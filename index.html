@@ -1,136 +1,138 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
-    <title>간단한 계산기</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no," />
+    <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="main.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="calcBox">
-            <textarea id="inputArea" disabled></textarea>
-            <textarea id="outputArea" disabled>0</textarea>
+    <main>
+        <textarea id="inputArea" readonly>0</textarea>
+        <textarea id="outputArea" disabled>0</textarea>
+        <div class="button-wrap">
+            <button data-type="ac" class="ac">AC</button>
+            <button data-type="operator">&divide;</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button data-type="operator">&times;</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button data-type="operator">-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button data-type="operator">+</button>
+            <button class="zero">0</button>
+            <button>.</button>
+            <button id="backspace" data-type="backspace">⌫</button>
         </div>
+    </main>
 
-        <div class="buttonBox">
-            <table>
-                <tr>
-                    <td>
-                        <button class="etcButton" onclick="allClear()">
-                            <p>C</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="etcButton" onclick="calculate('(')">
-                            <p>(</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="etcButton" onclick="calculate(')')">
-                            <p>)</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="etcButton" onclick="del()">
-                            <p style="font-size: 40px;">del</p>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="num1('7')">
-                            <p>7</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('8')">
-                            <p>8</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('9')">
-                            <p>9</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="sign" onclick="calculate('/')">
-                            <p>÷</p>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="num1('4')">
-                            <p>4</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('5')">
-                            <p>5</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('6')">
-                            <p>6</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="sign" onclick="calculate('*')">
-                            <p>×</p>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="num1('1')">
-                            <p>1</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('2')">
-                            <p>2</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('3')">
-                            <p>3</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="sign" onclick="calculate('-')">
-                            <p>−</p>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="num1('0')">
-                            <p>0</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="num1('00')">
-                            <p>00</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="dot()">
-                            <p>.</p>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="sign" onclick="calculate('+')">
-                            <p>+</p>
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <script>
+        class Calculator {
+            constructor(displayInputElement, outputElement) {
+                this.displayInputElement = displayInputElement;
+                this.outputElement = outputElement;
+                this.operatorCheck = true;
+                this.equalsCheck = false;
+                this.clear();
+            }
+
+            appendNumber(number) {
+                if (this.equalsCheck) {
+                    this.displayContent = number;
+                    this.equalsCheck = false;
+                } else {
+                    this.displayContent += number;
+                }
+                this.operatorCheck = false;
+                this.updateResult();  
+            }
+
+            appendOperator(operator) {
+                if (this.operatorCheck) return false;
+                if (this.equalsCheck) this.equalsCheck = false;
+
+                this.displayContent += ` ${operator} `;
+
+                return this.operatorCheck = true;
+            }
+
+            updateResult() {
+                try {
+                    let result = eval(this.displayContent
+                        .replace('\u00D7', '*')
+                        .replace('\u00F7', '/')
+                    );
+                    let formattedResult = this.formatNumberWithCommas(result);
+                    this.outputElement.value = formattedResult; 
+                } catch (error) {
+                    this.outputElement.value = 'Error';
+                }
+            }
+
+            formatNumberWithCommas(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            updateDisplay() {
+                let formattedDisplayContent = this.formatNumberWithCommas(this.displayContent);
+                this.displayInputElement.value = formattedDisplayContent;
+                this.scrollTextArea();
+            }
+
+            scrollTextArea() {
+                this.displayInputElement.scrollTop = this.displayInputElement.scrollHeight;
+            }
+
+            clear() {
+                this.displayContent = '';
+                this.displayInputElement.value = 0;
+                this.outputElement.value = 0; 
+                this.operatorCheck = true;
+            }
+
+            backspace() {
+                this.displayContent = this.displayContent.slice(0, -1);
+                this.updateResult();
+                this.updateDisplay();
+            }
+        }
+
+        const buttons = document.querySelectorAll('button');
+        const displayInputElement = document.querySelector('#inputArea');
+        const outputElement = document.querySelector('#outputArea');
+
+        const calculator = new Calculator(displayInputElement, outputElement);
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                switch (button.dataset.type) {
+                    case 'operator':
+                        if (calculator.appendOperator(button.innerText)) {
+                            calculator.updateDisplay();
+                        }
+                        break;
+                    case 'ac':
+                        calculator.clear();
+                        break;
+                    case 'backspace':
+                        calculator.backspace();
+                        break;
+                    default:
+                        calculator.appendNumber(button.innerText);
+                        calculator.updateDisplay();
+                        break;
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>
