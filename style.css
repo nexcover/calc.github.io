@@ -17,11 +17,11 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: purple;
+    background-color: transparent;
 }
 
 textarea {
-    width: 95%;
+    width: 90%;
     text-align: right;
     border: none;
     background: transparent;
@@ -32,7 +32,7 @@ textarea {
 .inOutput {
     width: 100%;
     height: 40%;
-    background-color: greenyellow;
+    background-color: transparent;
 }
 
 .Bt {
@@ -44,12 +44,12 @@ textarea {
     height: 25%;
     padding-top: 35%;
     font-size: 2.1rem;
-    background-color: pink;
+    background-color: transparent;
 }
 
 #outputArea {
     height: 20%;
-    background-color: skyblue;
+    background-color: transparent;
 }
 
 table {
@@ -58,7 +58,7 @@ table {
     border: none;
     margin: auto;
     border-collapse: collapse;
-    background-color: tr;
+    background-color: transparent;
 }
 
 td {
