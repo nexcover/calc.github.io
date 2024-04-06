@@ -46,20 +46,21 @@ textarea {
 }
 
 #inputArea {
-    height: 75%;
-    padding-top: 35%;
+    height: 80%;
+    padding-top: 45%;
     font-size: 2.1rem;
     /* word-spacing: -5px; */
 }
 
 #outputArea {
     height: 25%;
+    background-color: black;
 }
 
 button {
     background: #828284;
     border: 1px solid #454448;
-    font-size: 300%;
+    font-size: 40px;
 }
 
 /* nth-child(4n+2): 4번째 요소마다 스타일을 적용하는데 처음에만 두번째에 적용 */
