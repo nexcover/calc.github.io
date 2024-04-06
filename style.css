@@ -6,58 +6,50 @@ body {
     margin: 0;
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: black;
 }
 .container {
-    width: 70%;
-    height: 90%;
+    margin: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: transparent;
-}
-
-.Bt {
-    width: 100%;
-    height: 50%;
+    background-color: purple;
 }
 
 textarea {
-    width: 90%;
+    width: 95%;
     text-align: right;
     border: none;
     background: transparent;
-    padding-right: 1rem;
     font-size: 2.4rem;
     resize: none;
 }
 
 .inOutput {
     width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: transparent;
+    height: 40%;
+    background-color: greenyellow;
+}
+
+.Bt {
+    width: 100%;
+    height: 60%;
 }
 
 #inputArea {
-    height: 30%;
-    padding-top: 65%;
+    height: 25%;
+    padding-top: 35%;
     font-size: 2.1rem;
-    background-color: transparent;
-    /* word-spacing: -5px; */
+    background-color: pink;
 }
 
 #outputArea {
-    height: 40%;
-    background-color: transparent;
+    height: 20%;
+    background-color: skyblue;
 }
 
 table {
