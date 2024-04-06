@@ -9,42 +9,46 @@
 </head>
 
 <body>
-    <div class="inOutput">
-        <textarea id="inputArea" readonly>0</textarea>
-        <textarea id="outputArea" disabled>0</textarea>
+    <div class="container">
+        <div class="inOutput">
+            <textarea id="inputArea" readonly>0</textarea>
+            <textarea id="outputArea" disabled>0</textarea>
+        </div>
+
+        <div class="Bt">
+            <table>
+                <tr>
+                    <td colspan="3"><button data-type="ac" class="ac">AC</button></td>
+                    <td><button class="sign" data-type="operator">&divide;</button></td>
+                </tr>
+                <tr>
+                    <td class="btSize"><button>7</button></td>
+                    <td class="btSize"><button>8</button></td>
+                    <td class="btSize"><button>9</button></td>
+                    <td class="btSize"><button class="sign" data-type="operator">&times;</button></td>
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button class="sign" data-type="operator">-</button></td>
+                </tr>
+                <tr>
+                    <td><button>1</button></td>
+                    <td><button>2</button></td>
+                    <td><button>3</button></td>
+                    <td><button class="sign" data-type="operator">+</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="zero">0</button></td>
+                    <td><button>.</button></td>
+                    <td><button class="sign" id="backspace" data-type="backspace">⌫</button></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
-    <table>
-        <tr>
-            <td colspan="3"><button data-type="ac" class="ac">AC</button></td>
-            <td><button class="sign" data-type="operator">&divide;</button></td>
-        </tr>
-        <tr>
-            <td class="btSize"><button>7</button></td>
-            <td class="btSize"><button>8</button></td>
-            <td class="btSize"><button>9</button></td>
-            <td class="btSize"><button class="sign" data-type="operator">&times;</button></td>
-        </tr>
-        <tr>
-            <td><button>4</button></td>
-            <td><button>5</button></td>
-            <td><button>6</button></td>
-            <td><button class="sign" data-type="operator">-</button></td>
-        </tr>
-        <tr>
-            <td><button>1</button></td>
-            <td><button>2</button></td>
-            <td><button>3</button></td>
-            <td><button class="sign" data-type="operator">+</button></td>
-        </tr>
-        <tr>
-            <td colspan="2"><button class="zero">0</button></td>
-            <td><button>.</button></td>
-            <td><button class="sign" id="backspace" data-type="backspace">⌫</button></td>
-        </tr>
-    </table>
-
-    <!-- <script defer src="script.js"></script> -->
+    <script defer src="script.js"></script>
 </body>
 
 </html>
