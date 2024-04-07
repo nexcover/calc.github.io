@@ -53,7 +53,7 @@ class Calculator {
             result = parseFloat(result.toFixed(6));
 
             // Check if the result is greater than 1 billion (10억)
-            if (Math.abs(result) >= 1e9) {
+            if (Math.abs(result) >= 1e10) {
                 result = result.toExponential(2); // Convert to exponential notation
             } else {
                 // Split the number into integer and fractional parts
