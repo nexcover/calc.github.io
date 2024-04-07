@@ -125,7 +125,6 @@ class Calculator {
 const buttons = document.querySelectorAll('button');
 const displayInputElement = document.querySelector('#inputArea');
 const outputElement = document.querySelector('#outputArea');
-
 const calculator = new Calculator(displayInputElement, outputElement);
 
 buttons.forEach(button => {

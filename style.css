@@ -10,6 +10,7 @@ body {
     overflow-y: hidden;
     background-color: black;
 }
+
 .container {
     margin: auto;
     width: 100%;
@@ -88,5 +89,5 @@ button {
 }
 
 #backspace {
-    font-size: 15px;
+    font-size: 20px;
 }
