@@ -16,6 +16,11 @@ class Calculator {
             return; // Do not append number if it exceeds 1 billion
         }
 
+        // Prevent consecutive zeros unless it's after a decimal point
+        if (number === '0' && currentNumber === '0') {
+            return;
+        }
+
         if (this.equalsCheck) {
             this.displayContent = number;
             this.equalsCheck = false;
@@ -25,6 +30,7 @@ class Calculator {
         this.operatorCheck = false;
         this.updateResult();
     }
+
 
     appendOperator(operator) {
         if (this.operatorCheck) return false;
