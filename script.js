@@ -105,7 +105,7 @@ class Calculator {
 
     backspace() {
         // Check if the last character is an operator with 3 characters (e.g., " * ", " / ", " + ", " - ")
-        const lastThreeChars = this.displayContent.slice(-3);
+        const lastThreeChars = this.displayContent.slice(-1);
         if (lastThreeChars.trim().length >= 1) {
             this.displayContent = this.displayContent.slice(0, -1);
         } else {
