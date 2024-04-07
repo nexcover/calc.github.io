@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     button.style.backgroundColor = '#828284'; // 그 외 버튼의 원래 색상으로 변경
                 }
-            }, 200);
+            }, 500);
         });
     });
 });
