@@ -34,10 +34,14 @@ class Calculator {
         try {
             let evaluatedContent = this.displayContent
                 .replace(/\u00D7/g, '*')
-                .replace(/\u00F7/g, '/');
+                .replace(/\u00F7/g, '/')
+                .replace(/\u2212/g, '-')
+                .replace(/\u002B/g, '+')
 
             evaluatedContent = evaluatedContent.replace(/(\d)x/g, '$1*');
             evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1/');
+            evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1-');
+            evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1+');
 
             let result = eval(evaluatedContent);
 
@@ -98,7 +102,7 @@ class Calculator {
     }
 
     getCurrentNumber() {
-        const numbers = this.displayContent.split(/[-+\u00D7\u00F7]/);
+        const numbers = this.displayContent.split(/[\u002B\u2212\u00D7\u00F7]/);
         return numbers[numbers.length - 1];
     }
 
