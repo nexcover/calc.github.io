@@ -3,98 +3,75 @@ class Calculator {
         this.displayInputElement = displayInputElement;
         this.outputElement = outputElement;
         this.operatorCheck = true;
-        this.equalsCheck = false;
         this.clear();
     }
 
     appendNumber(number) {
         const currentNumber = this.getCurrentNumber();
 
-        // Check if adding this number would exceed 1 billion (10억)
-        if ((currentNumber.length === 9 && currentNumber[0] !== '-') ||
-            (currentNumber.length === 10 && currentNumber[0] === '-')) {
-            return; // Do not append number if it exceeds 1 billion
+        if ((currentNumber.length === 10 && currentNumber[0] !== '-') ||
+            (currentNumber.length === 11 && currentNumber[0] === '-')) {
+            return;
         }
 
-        // Prevent consecutive zeros unless it's after a decimal point
         if (number === '0' && currentNumber === '0') {
             return;
         }
 
-        if (this.equalsCheck) {
-            this.displayContent = number;
-            this.equalsCheck = false;
-        } else {
-            this.displayContent += number;
-        }
+        this.displayContent += number;
         this.operatorCheck = false;
         this.updateResult();
     }
 
-
     appendOperator(operator) {
         if (this.operatorCheck) return false;
-        if (this.equalsCheck) this.equalsCheck = false;
 
         this.displayContent += ` ${operator} `;
-
         return this.operatorCheck = true;
     }
 
     updateResult() {
         try {
             let evaluatedContent = this.displayContent
-                .replace(/\u00D7/g, '*')  // Replace × with *
-                .replace(/\u00F7/g, '/'); // Replace ÷ with /
+                .replace(/\u00D7/g, '*')
+                .replace(/\u00F7/g, '/');
 
-            // Handle consecutive multiplications: "2x2x2" => "2*2*2"
             evaluatedContent = evaluatedContent.replace(/(\d)x/g, '$1*');
-
-            // Handle consecutive divisions: "8÷2÷2" => "8/2/2"
             evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1/');
 
             let result = eval(evaluatedContent);
 
-            // Limit decimal places to 6
             result = parseFloat(result.toFixed(6));
 
-            // Check if the result is greater than 1 billion (10억)
             if (Math.abs(result) >= 1e10) {
-                result = result.toExponential(2); // Convert to exponential notation
+                result = result.toExponential(2);
             } else {
-                // Split the number into integer and fractional parts
                 let parts = result.toString().split('.');
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format integer part with commas
-
-                // Remove commas from decimal part
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 if (parts[1]) {
                     parts[1] = parts[1].replace(/,/g, '');
                 }
-
                 result = parts.join('.');
             }
 
-            this.outputElement.value = result;
+            this.outputElement.innerText = result;
         } catch (error) {
-            this.outputElement.value = '';
+            this.outputElement.innerText = '';
         }
     }
 
     formatNumberForDisplay(number) {
         const parts = number.toString().split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Format integer part with commas
-
-        // Remove commas from decimal part
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         if (parts[1]) {
             parts[1] = parts[1].replace(/,/g, '');
         }
-
         return parts.join('.');
     }
 
     updateDisplay() {
         let formattedDisplayContent = this.formatNumberForDisplay(this.displayContent);
-        this.displayInputElement.value = formattedDisplayContent;
+        this.displayInputElement.innerText = formattedDisplayContent;
         this.scrollTextArea();
     }
 
@@ -104,20 +81,18 @@ class Calculator {
 
     clear() {
         this.displayContent = '';
-        this.displayInputElement.value = 0;
-        this.outputElement.value = 0;
+        this.displayInputElement.innerText = 0;
+        this.outputElement.innerText = 0;
         this.operatorCheck = true;
     }
 
     backspace() {
-        // Check if the last character is an operator with 3 characters (e.g., " * ", " / ", " + ", " - ")
         const lastThreeChars = this.displayContent.slice(-1);
         if (lastThreeChars.trim().length >= 1) {
             this.displayContent = this.displayContent.slice(0, -1);
         } else {
             this.displayContent = this.displayContent.slice(0, -3);
         }
-
         this.updateResult();
         this.updateDisplay();
     }
@@ -126,31 +101,51 @@ class Calculator {
         const numbers = this.displayContent.split(/[-+\u00D7\u00F7]/);
         return numbers[numbers.length - 1];
     }
+
+    changeButtonStyle(button, color) {
+        button.style.transition = 'background-color 0.5s ease';
+        button.style.backgroundColor = color;
+        setTimeout(() => {
+            button.style.transition = 'background-color 0.5s ease';
+            if (button.classList.contains('sign')) {
+                button.style.backgroundColor = 'orange';
+            } else if (button.classList.contains('ac')) {
+                button.style.backgroundColor = '#636267';
+            } else {
+                button.style.backgroundColor = '#828284';
+            }
+        }, 250);
+    }
 }
 
-const buttons = document.querySelectorAll('button');
-const displayInputElement = document.querySelector('#inputArea');
-const outputElement = document.querySelector('#outputArea');
-const calculator = new Calculator(displayInputElement, outputElement);
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('button');
+    const displayInputElement = document.querySelector('#inputArea');
+    const outputElement = document.querySelector('#outputArea');
+    const calculator = new Calculator(displayInputElement, outputElement);
 
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        switch (button.dataset.type) {
-            case 'operator':
-                if (calculator.appendOperator(button.innerText)) {
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            switch (button.dataset.type) {
+                case 'operator':
+                    if (calculator.appendOperator(button.innerText)) {
+                        calculator.updateDisplay();
+                    }
+                    break;
+                case 'ac':
+                    calculator.clear();
+                    break;
+                case 'backspace':
+                    calculator.backspace();
+                    break;
+                default:
+                    calculator.appendNumber(button.innerText);
                     calculator.updateDisplay();
-                }
-                break;
-            case 'ac':
-                calculator.clear();
-                break;
-            case 'backspace':
-                calculator.backspace();
-                break;
-            default:
-                calculator.appendNumber(button.innerText);
-                calculator.updateDisplay();
-                break;
-        }
+                    break;
+            }
+
+            calculator.changeButtonStyle(button, button.classList.contains('sign') ? '#ffcc80' :
+                button.classList.contains('ac') ? '#a0a0a2' : '#c0c0c2');
+        });
     });
 });

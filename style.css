@@ -15,26 +15,15 @@ body {
     margin: auto;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
     flex-direction: column;
-    background-color: transparent;
-}
-
-textarea {
-    width: 90%;
-    text-align: right;
-    border: none;
-    background: transparent;
-    font-size: 2.4rem;
-    resize: none;
-    scrollbar-color: black;
 }
 
 .inOutput {
     width: 100%;
     height: 40%;
-    background-color: transparent;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
 }
 
 .Bt {
@@ -43,11 +32,9 @@ textarea {
 }
 
 #inputArea {
-    height: 30%;
-    padding-top: 25%;
     font-size: 2.6rem;
-    background-color: transparent;
-    scrollbar-width: none;
+    text-align: end;
+    padding: 0 10px 0 10px;
 }
 
 #inputArea ::-webkit-scrollbar {
@@ -55,8 +42,9 @@ textarea {
 }
 
 #outputArea {
-    height: 20%;
-    background-color: transparent;
+    font-size: 3rem;
+    text-align: end;
+    padding: 0 10px 0 10px;
 }
 
 table {
@@ -65,7 +53,6 @@ table {
     border: none;
     margin: auto;
     border-collapse: collapse;
-    background-color: transparent;
 }
 
 td {
