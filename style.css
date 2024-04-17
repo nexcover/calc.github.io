@@ -42,12 +42,11 @@ body {
 table {
     width: 100%;
     height: 100%;
-    border-color: transparent;
+    border-collapse: collapse;
 }
 
 td {
     width: 20%;
-    border-color: transparent;
 }
 
 button {
@@ -55,6 +54,7 @@ button {
     height: 100%;
     font-size: 30px;
     color: white;
+    border-color: black;
     background-color: rgb(137, 137, 137);
 }
 
