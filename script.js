@@ -1,155 +1,102 @@
-class Calculator {
-    constructor(displayInputElement, outputElement) {
-        this.displayInputElement = displayInputElement;
-        this.outputElement = outputElement;
-        this.operatorCheck = true;
-        this.clear();
+// 초기 값 및 연산자 설정
+let displayValue = "";
+let operators = ['+', '−', '×', '÷'];
+
+// 숫자 형식 변환 함수
+function formatNumber(number) {
+    let parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+
+// 화면 업데이트 함수
+function updateDisplay() {
+    document.getElementById("display").innerText = formatNumber(displayValue);
+    // 스크롤을 가장 아래로 이동
+    document.getElementById("display").scrollTop = document.getElementById("display").scrollHeight;
+}
+
+// 숫자 추가 함수
+function appendNumber(number) {
+    // displayValue가 비어있거나, displayValue가 "0"인 경우
+    if (displayValue === "" || displayValue === "0") {
+        displayValue = number.toString();
+    } else {
+        displayValue += number;
+    }
+    updateDisplay();
+}
+
+
+// 연산자 추가 함수
+function appendOperator(operator) {
+    // 입력된 값이 비어있으면 함수를 종료합니다.
+    if (displayValue === "") return;
+
+    // 마지막으로 입력된 문자를 가져옵니다.
+    let lastChar = displayValue.slice(-1);
+
+    // 마지막으로 입력된 문자가 공백인 경우, 3칸을 지웁니다.
+    if (lastChar === ' ') {
+        displayValue = displayValue.slice(0, -3);
+    }
+    // 마지막으로 입력된 문자가 연산자인 경우, 기존 연산자를 삭제합니다.
+    else if (operators.includes(lastChar)) {
+        displayValue = displayValue.slice(0, -1);
     }
 
-    appendNumber(number) {
-        const currentNumber = this.getCurrentNumber();
-
-        if ((currentNumber.length === 10 && currentNumber[0] !== '-') ||
-            (currentNumber.length === 11 && currentNumber[0] === '-')) {
-            return;
-        }
-
-        if (number === '0' && currentNumber === '0') {
-            return;
-        }
-
-        this.displayContent += number;
-        this.operatorCheck = false;
-        this.updateResult();
+    // displayValue가 비어있고, 입력된 연산자가 -인 경우
+    if (displayValue === "" && operator === '−') {
+        displayValue += operator;
+    } else {
+        // 새로운 연산자를 추가합니다.
+        displayValue += ' ' + operator + ' ';
     }
 
-    appendOperator(operator) {
-        if (this.operatorCheck) return false;
+    // 화면을 업데이트합니다.
+    updateDisplay();
+}
 
-        this.displayContent += ` ${operator} `;
-        return this.operatorCheck = true;
-    }
-
-    updateResult() {
-        try {
-            let evaluatedContent = this.displayContent
-                .replace(/\u00D7/g, '*')
-                .replace(/\u00F7/g, '/')
-                .replace(/\u2212/g, '-')
-                .replace(/\u002B/g, '+')
-
-            evaluatedContent = evaluatedContent.replace(/(\d)x/g, '$1*');
-            evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1/');
-            evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1-');
-            evaluatedContent = evaluatedContent.replace(/(\d)÷/g, '$1+');
-
-            let result = eval(evaluatedContent);
-
-            result = parseFloat(result.toFixed(6));
-
-            if (Math.abs(result) >= 1e10) {
-                result = result.toExponential(2);
-            } else {
-                let parts = result.toString().split('.');
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                if (parts[1]) {
-                    parts[1] = parts[1].replace(/,/g, '');
-                }
-                result = parts.join('.');
-            }
-
-            this.outputElement.innerText = result;
-        } catch (error) {
-            this.outputElement.innerText = '';
-        }
-    }
-
-    formatNumberForDisplay(number) {
-        const parts = number.toString().split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        if (parts[1]) {
-            parts[1] = parts[1].replace(/,/g, '');
-        }
-        return parts.join('.');
-    }
-
-    updateDisplay() {
-        let formattedDisplayContent = this.formatNumberForDisplay(this.displayContent);
-        this.displayInputElement.innerText = formattedDisplayContent;
-        this.scrollTextArea();
-    }
-
-    scrollTextArea() {
-        this.displayInputElement.scrollTop = this.displayInputElement.scrollHeight;
-    }
-
-    clear() {
-        this.displayContent = '';
-        this.displayInputElement.innerText = 0;
-        this.outputElement.innerText = 0;
-        this.operatorCheck = true;
-    }
-
-    backspace() {
-        const lastThreeChars = this.displayContent.slice(-1);
-        if (lastThreeChars.trim().length >= 1) {
-            this.displayContent = this.displayContent.slice(0, -1);
-        } else {
-            this.displayContent = this.displayContent.slice(0, -3);
-        }
-        this.updateResult();
-        this.updateDisplay();
-    }
-
-    getCurrentNumber() {
-        const numbers = this.displayContent.split(/[\u002B\u2212\u00D7\u00F7]/);
-        return numbers[numbers.length - 1];
-    }
-
-    changeButtonStyle(button, color) {
-        button.style.transition = 'background-color 0.5s ease';
-        button.style.backgroundColor = color;
-        setTimeout(() => {
-            button.style.transition = 'background-color 0.5s ease';
-            if (button.classList.contains('sign')) {
-                button.style.backgroundColor = 'orange';
-            } else if (button.classList.contains('ac')) {
-                button.style.backgroundColor = '#636267';
-            } else {
-                button.style.backgroundColor = '#828284';
-            }
-        }, 250);
+// 소수점 추가 함수
+function appendDot() {
+    if (!displayValue.includes('.')) {
+        displayValue += '.';
+        updateDisplay();
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('button');
-    const displayInputElement = document.querySelector('#inputArea');
-    const outputElement = document.querySelector('#outputArea');
-    const calculator = new Calculator(displayInputElement, outputElement);
+// 화면 초기화 함수
+function clearDisplay() {
+    displayValue = "0";
+    updateDisplay();
+    document.getElementById("result").innerText = "0";
+}
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            switch (button.dataset.type) {
-                case 'operator':
-                    if (calculator.appendOperator(button.innerText)) {
-                        calculator.updateDisplay();
-                    }
-                    break;
-                case 'ac':
-                    calculator.clear();
-                    break;
-                case 'backspace':
-                    calculator.backspace();
-                    break;
-                default:
-                    calculator.appendNumber(button.innerText);
-                    calculator.updateDisplay();
-                    break;
-            }
 
-            calculator.changeButtonStyle(button, button.classList.contains('sign') ? '#ffcc80' :
-                button.classList.contains('ac') ? '#a0a0a2' : '#c0c0c2');
-        });
-    });
-});
+// 마지막 문자 삭제 함수
+function deleteLast() {
+    if (displayValue.endsWith(' ')) {
+        displayValue = displayValue.slice(0, -3);
+    } else {
+        displayValue = displayValue.slice(0, -1);
+    }
+    updateDisplay();
+}
+
+// 계산 함수
+function calculate() {
+    let expression = displayValue;
+    let result;
+
+    try {
+        // 연산자를 실제 연산에 사용하기 위해 replace를 활용하여 변환
+        expression = expression.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
+        result = eval(expression);
+        result = parseFloat(result.toFixed(8)); // 결과를 소수점 8자리까지 표시
+    } catch (error) {
+        result = "잘못된 표현식입니다.";
+    }
+
+    // 결과를 화면에 표시합니다.
+    document.getElementById("result").innerText = formatNumber(result);
+}

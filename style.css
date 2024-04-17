@@ -1,83 +1,65 @@
-* {
-    color: white;
-}
-
 body {
-    margin: 0;
     width: 100%;
     height: 100vh;
+    margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: black;
 }
 
-.container {
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-}
-
-.inOutput {
+.inputOutput {
     width: 100%;
     height: 40%;
     display: flex;
     justify-content: end;
+    align-items:end;
     flex-direction: column;
 }
 
-.Bt {
+#display {
+    font-size: 40px;
+    text-align: end;
+    overflow: auto;
+    color: white;
+    font-family: sans-serif;
+    padding: 0 10px 0 10px;
+}
+
+#result {
+    height: 60px;
+    font-size: 50px;
+    line-height: 150%;
+    color: white;
+    font-family: sans-serif;
+    padding: 0 10px 0 10px;
+}
+
+.tableSection {
     width: 100%;
     height: 60%;
-}
-
-#inputArea {
-    font-size: 2.6rem;
-    text-align: end;
-    padding: 0 10px 0 10px;
-    overflow: auto;
-    font-family: sans-serif;
-}
-
-#inputArea ::-webkit-scrollbar {
-    display: none;
-}
-
-#outputArea {
-    font-size: 3rem;
-    text-align: end;
-    padding: 0 10px 0 10px;
-    font-family: sans-serif;
 }
 
 table {
     width: 100%;
     height: 100%;
-    border: none;
-    margin: auto;
-    border-collapse: collapse;
 }
 
 td {
-    border: none;
+    width: 20%;;
 }
 
 button {
     width: 100%;
     height: 100%;
-    background: #828284;
-    border: 1px solid #454448;
     font-size: 30px;
-}
-
-.ac {
-    background-color: #636267;
+    color: white;
+    background-color: rgb(137, 137, 137);
 }
 
 .sign {
     background-color: orange;
 }
 
-#backspace {
-    font-size: 20px;
+.del {
+    background-color: rgb(99, 99, 99);
 }
